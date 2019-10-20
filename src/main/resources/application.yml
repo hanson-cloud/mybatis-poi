@@ -1,0 +1,66 @@
+spring:
+  datasource:
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://172.17.198.25:3306/**?useUnicode=true&amp&characterEncoding=utf8
+    type: com.alibaba.druid.pool.DruidDataSource
+
+    #数据源其他配置
+    druid:
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
+        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      max-wait: 60000
+      time-between-connect-error-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 1 FROM DUAL
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      use-global-data-source-stat: true
+      connect-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+      aop-patterns: com.hanson.mybatis.dao.*","com.hanson.mybatis.service.*
+      stat-view-servlet:
+        allow: [127.0.0.1,192.168.1.1,localhost]
+        enabled: true
+        url-pattern: /druid/*
+        reset-enable: true
+        login-username: admin
+        login-password: 123456
+      filters: stat,wall,slf4j
+
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    show-sql: true
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      enabled: true
+      max-request-size: 10MB
+mybatis:
+  mapper-locations: classpath:mybatis/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #打印sql日志
+  type-aliases-package: com.hanson.mybatis.bean
+mybatis-plus:
+  global-config:
+    banner: true
+    db-config:
+      logic-not-delete-value: 0
+      logic-delete-value: 1
+  mapper-locations: 'classpath*:/mybatis/*.xml'
+#debug: true
+#  config-location: classpath:mybatis/mybatis-config.xml
+
+
+#    schema: [classpath:department.sql,classpath:employee.sql]
+#    initialization-mode: always

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hanson.mybatis.dao.GovernmentDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.hanson.mybatis.bean.Government">
+        <id column="id" property="id" />
+        <result column="branch_id" property="branchId" />
+        <result column="master_id" property="masterId" />
+        <result column="statecos_client_code" property="statecosClientCode" />
+        <result column="statecos_client_name" property="statecosClientName" />
+        <result column="client_abbervia" property="clientAbbervia" />
+        <result column="client_group_abbervia" property="clientGroupAbbervia" />
+        <result column="subordinate_agent" property="subordinateAgent" />
+        <result column="superior_company" property="superiorCompany" />
+        <result column="sales_area_id" property="salesAreaId" />
+        <result column="transaction_currency" property="transactionCurrency" />
+        <result column="payment" property="payment" />
+        <result column="client_state" property="clientState" />
+        <result column="approve_id" property="approveId" />
+        <result column="tel" property="tel" />
+        <result column="fax" property="fax" />
+        <result column="customer_province" property="customerProvince" />
+        <result column="customer_city" property="customerCity" />
+        <result column="customer_area" property="customerArea" />
+        <result column="detailed_address" property="detailedAddress" />
+        <result column="website" property="website" />
+        <result column="mailbox" property="mailbox" />
+        <result column="remarks" property="remarks" />
+        <result column="disable_cause" property="disableCause" />
+        <result column="tips" property="tips" />
+        <result column="version" property="version" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="create_by" property="createBy" />
+        <result column="update_by" property="updateBy" />
+        <result column="delete_flag" property="deleteFlag" />
+        <result column="customer_Type" property="customerType" />
+        <result column="sales_area_name" property="salesAreaName" />
+        <result column="subordinate_name" property="subordinateName" />
+        <result column="trade_Type" property="tradeType" />
+        <result column="client_Stage" property="clientStage" />
+        <result column="operator" property="operator" />
+        <result column="channel_property" property="channelProperty" />
+        <collection property="contacts" column="master_id" ofType="com.hanson.mybatis.bean.Contact" javaType="ArrayList"
+                    select="com.hanson.mybatis.dao.ContactDao.getContactsByMasterId"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, branch_id, master_id, statecos_client_code, statecos_client_name, client_abbervia, client_group_abbervia, subordinate_agent, superior_company, sales_area_id, transaction_currency, payment, client_state, approve_id, tel, fax, customer_province, customer_city, customer_area, detailed_address, website, mailbox, remarks, disable_cause, tips, version, create_time, update_time, create_by, update_by, delete_flag, customer_Type, sales_area_name, subordinate_name, trade_Type, client_Stage, operator, channel_property
+    </sql>
+
+    <select id="doSearch" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/> FROM government
+    </select>
+
+</mapper>

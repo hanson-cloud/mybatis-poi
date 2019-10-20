@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hanson.mybatis.dao.ContactDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.hanson.mybatis.bean.Contact">
+        <id column="id" property="id" />
+        <result column="master_id" property="masterId" />
+        <result column="name" property="name" />
+        <result column="department" property="department" />
+        <result column="job" property="job" />
+        <result column="phone" property="phone" />
+        <result column="mail" property="mail" />
+        <result column="province" property="province" />
+        <result column="city" property="city" />
+        <result column="district" property="district" />
+        <result column="county" property="county" />
+        <result column="address" property="address" />
+        <result column="data_type" property="dataType" />
+        <result column="enable_flag" property="enableFlag" />
+        <result column="default_flag" property="defaultFlag" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="create_by" property="createBy" />
+        <result column="update_by" property="updateBy" />
+        <result column="delete_flag" property="deleteFlag" />
+        <result column="system_code" property="systemCode" />
+        <result column="lang_type" property="langType" />
+        <result column="employee_id" property="employeeId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, master_id, name, department, job, phone, mail, province, city, district, county, address, data_type, enable_flag, default_flag, create_time, update_time, create_by, update_by, delete_flag, system_code, lang_type, employee_id
+    </sql>
+    <select id="getContactsByMasterId" resultType="com.hanson.mybatis.bean.Contact">
+        SELECT <include refid="Base_Column_List"/> FROM contact WHERE master_id=#{masterId}
+    </select>
+
+</mapper>
